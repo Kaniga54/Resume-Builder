@@ -1,4 +1,8 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const isClient = typeof window !== 'undefined';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 
+  (isClient && window.location.hostname !== 'localhost'
+    ? `${window.location.origin}/api/backend`
+    : 'http://localhost:5000/api');
 
 // Helper to get auth headers
 function getHeaders(isMultipart = false) {

@@ -41,19 +41,25 @@ const upload = multer({
   }
 });
 
+const apiRouter = express.Router();
+
 // Authentication Routes
-app.post('/api/auth/register', register);
-app.post('/api/auth/login', login);
-app.get('/api/auth/profile', authenticateToken, getProfile);
+apiRouter.post('/auth/register', register);
+apiRouter.post('/auth/login', login);
+apiRouter.get('/auth/profile', authenticateToken, getProfile);
 
 // Resume Analysis Routes
-app.post('/api/resumes/analyze', authenticateToken, upload.single('resume'), analyzeResumeFile);
-app.get('/api/resumes/history', authenticateToken, getHistory);
-app.get('/api/resumes/analysis/:id', authenticateToken, getAnalysisDetails);
+apiRouter.post('/resumes/analyze', authenticateToken, upload.single('resume'), analyzeResumeFile);
+apiRouter.get('/resumes/history', authenticateToken, getHistory);
+apiRouter.get('/resumes/analysis/:id', authenticateToken, getAnalysisDetails);
 
 // Resume Builder Routes
-app.get('/api/resumes/builder', authenticateToken, getBuilderData);
-app.post('/api/resumes/builder', authenticateToken, saveBuilderData);
+apiRouter.get('/resumes/builder', authenticateToken, getBuilderData);
+apiRouter.post('/resumes/builder', authenticateToken, saveBuilderData);
+
+// Mount router on both local and Vercel rewrites prefixes
+app.use('/api', apiRouter);
+app.use('/api/backend', apiRouter);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
