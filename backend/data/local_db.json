@@ -1,0 +1,150 @@
+{
+  "users": [
+    {
+      "id": "te1apoo2nh",
+      "name": "Kanigeshwari TM",
+      "email": "kanigeshwaritm@gmail.com",
+      "password": "$2a$10$j4geQig3Qco1tt8lo5EV.u31fA5yLQNe1V1moTJ44mvcO/DU1HbUO",
+      "createdAt": "2026-07-01T06:28:16.783Z"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "dxrlai9qopk",
+      "userId": "te1apoo2nh",
+      "filename": "Kanigeshwari_Resume_Final_Spaced.pdf",
+      "score": 71,
+      "breakdown": {
+        "keywords": 50,
+        "sections": 83,
+        "formatting": 85,
+        "contact": 90
+      },
+      "sectionsFound": [
+        "Education",
+        "Skills",
+        "Projects",
+        "Summary / Objective",
+        "Certifications"
+      ],
+      "sectionsMissing": [
+        "Work Experience"
+      ],
+      "suggestions": [
+        {
+          "category": "Sections",
+          "message": "Missing crucial section: \"Work Experience\". Adding this helps ATS parse your resume structure.",
+          "severity": "high"
+        },
+        {
+          "category": "Formatting",
+          "message": "Low usage of strong action verbs (e.g., \"led\", \"optimized\", \"implemented\"). Bullet points should begin with action words.",
+          "severity": "medium"
+        },
+        {
+          "category": "Keywords",
+          "message": "Good keyword coverage, but could be improved. Try adding: frontend.",
+          "severity": "medium"
+        },
+        {
+          "category": "Contact",
+          "message": "No GitHub or Portfolio website detected. Linking projects is highly recommended for tech roles.",
+          "severity": "low"
+        },
+        {
+          "category": "Content",
+          "message": "Remove generic descriptions like \"hard worker\" or \"team player\". Focus instead on demonstrating these qualities through projects and accomplishments.",
+          "severity": "medium"
+        },
+        {
+          "category": "Formatting",
+          "message": "Use a reverse-chronological order for your experiences. Put your most recent and relevant position at the top.",
+          "severity": "medium"
+        },
+        {
+          "category": "Impact",
+          "message": "Ensure your experience points explain not just what you did, but the business value or outcome of your actions.",
+          "severity": "medium"
+        }
+      ],
+      "resumeText": "\n\nKANIGESHWARI TM\nkanigeshwaritm@gmail.com | +91 6381915595 | linkedin.com/in/kanigeshwari-tm-204a4927b\nPortfolio: https://portfolio-kanigeshwari.vercel.app/\nCAREER OBJECTIVE\nAspiring Web Developer with a strong foundation in front-end technologies. Passionate about creating\nresponsive and user-friendly web applications. Eager to learn new tools and improve development skills\ncontinuously. Quick learner with good problem-solving ability and adaptability. Seeking an opportunity to grow\nand contribute in a professional environment.\nSKILLS\nHTML\nCSS\nJavaScript\nJava\nTOOLS\nVS Code\nFigma\nCanva\nAREAS OF INTEREST\nWeb Development\nFull Stack Development\nSoftware Development\nLANGUAGES\nEnglish\nTamil\nEDUCATION\nB.Tech Information Technology - Erode Sengunthar Engineering College (CGPA: 7.5)\nHSC - JKK Rangammal Girls Hr Sec School (70.5%)\nSSLC - JKK Rangammal Girls Hr Sec School (71.6%)\nPROJECT\nPortfolio Website\nDeveloped a responsive personal portfolio website using HTML, CSS, JavaScript and React. Showcased\nskills, projects, and contact details with a modern user-friendly interface.\nStudent Placement Management System\nDeveloped a web-based system to simplify campus recruitment processes. Students can register, view job\nopportunities, and track application status. Administrators can manage companies, schedule interviews, and\nmonitor activities. Improves efficiency and reduces manual workload.\n\nCERTIFICATIONS\nNCASTM-25 Conference Participation\nTechnical Event - Sri Ramanujar Engineering College\nDECLARATION\nI hereby declare that the above information is true and correct to the best of my knowledge and belief.\nPLACE: Komarapalayam\n(KANIGESHWARI TM)",
+      "jobDescription": "frontend developer",
+      "createdAt": "2026-07-01T06:28:51.547Z"
+    },
+    {
+      "id": "ou4zsgqjhqm",
+      "userId": "te1apoo2nh",
+      "filename": "Mathish_Resume.pdf",
+      "score": 93,
+      "breakdown": {
+        "keywords": 100,
+        "sections": 100,
+        "formatting": 85,
+        "contact": 70
+      },
+      "sectionsFound": [
+        "Work Experience",
+        "Education",
+        "Skills",
+        "Projects",
+        "Summary / Objective",
+        "Certifications"
+      ],
+      "sectionsMissing": [],
+      "suggestions": [
+        {
+          "category": "Contact",
+          "message": "No LinkedIn URL detected. Professional profiles help recruiters find your online presence.",
+          "severity": "medium"
+        },
+        {
+          "category": "Formatting",
+          "message": "Low usage of strong action verbs (e.g., \"led\", \"optimized\", \"implemented\"). Bullet points should begin with action words.",
+          "severity": "medium"
+        },
+        {
+          "category": "Contact",
+          "message": "No GitHub or Portfolio website detected. Linking projects is highly recommended for tech roles.",
+          "severity": "low"
+        },
+        {
+          "category": "Content",
+          "message": "Remove generic descriptions like \"hard worker\" or \"team player\". Focus instead on demonstrating these qualities through projects and accomplishments.",
+          "severity": "medium"
+        },
+        {
+          "category": "Formatting",
+          "message": "Use a reverse-chronological order for your experiences. Put your most recent and relevant position at the top.",
+          "severity": "medium"
+        },
+        {
+          "category": "Impact",
+          "message": "Ensure your experience points explain not just what you did, but the business value or outcome of your actions.",
+          "severity": "medium"
+        }
+      ],
+      "resumeText": "\n\nJava\nHTML\nSQL\nJavaScript \nCSS\nReact\nC A R E E R   O B J E C T I V E S\nE D U C A T I O N\nTirupur\nmathishmohan22@gmail.com\n+91  6374533796\nMATHISH KARTHICK K M\nDeveloped a full-stack web application to replace\na  manual,  paper-based  hostel  leave  system,\neliminating processing delays and paperwork.\nDeveloped a web-based Hospital Management\nSystem to manage patient records, doctor\nschedules, appointments, and billing efficiently.\nErode Sengunthar Engineering College\nGovernment Higher Secondary School, Tirupur\nDIGITAL HOSTEL LEAVE MANAGEMENT SYSTEM\nPROJECTS\nHOSPITAL MANAGEMENT SYSTEM\nB.Tech Information Technology\nHSC, Percentage: 71.3%\nlinkedin\nCGPA: 8.45  (Upto 6 Sem)\nth\nYear: 2021-2022\nSSLC, Percentage: 74%\nGovernment Higher Secondary School, Tirupur\nYear: 2019 - 2020\nS K I L L S\nB.Tech (IT) Student with Expertise in Web development and ,IOT, passionate about the Solving real\nworld Challenges. Strong problem solving skills proven ability to develop innovative Projects. I am\nQuick learner, highly adaptable and eager to research and implement the emerging technologies.\nEffective Communicator and team player with hands on experience on leading projects. Goal-driven\nwith a strong Analytical Mindset and the ability to work in dynamic Environments.\nT O O L S\nVS Code\nMS Office\nWord press\nCanva\nPower BI\nTech Stack: React, Node.js, Express.js, Supabase\nAI CHEF DHAMU\nTech Stack: React.js, JavaScript, REST APIs\nDeveloped a modern AI-powered recipe generator\nweb app (“AI Chef”) that helps users create\npersonalized recipes based on ingredients and\ndietary preferences using AI integration.\nSMART CAMPUSS CONNECT\nDeveloped the Smart campus Connect Chatbot\nfor the College official website to provide\nstudents with real-time access to Admission\nprocess, placements,  Academics, events, and\nofficial informations\nTech Stack: React.js, JavaScript, HTML, Supabase\nAntigravity\nSQL server\nMongoDB Compass\n\nAREAS OF INTEREST\nWeb development\nJava development\nCommunication Networking\nSoftware Developing\nCloud Computing\nCO- CURRICULAR ACTIVITIES\nAttended 2 days Workshop in Mobile App\ndevelopment\nAttended the Webinar about MERN stack\ndevelopment\nAttended the Webinar about the\nFundamentals Of AI & ML\nAttended the Webinar about Web\ndevelopment\nSuccessfully Participated the International\nconference \nPresent the paper about Blockchain Technology\nin KIT college, Cbe\nParticipated Code Debugging event\nin KIT college, Cbe\nParticipated the Code Craze event in CIT college,\nCbe\nDECLARATION:\nI hereby declare that the above information is true and correct to the best of my\nknowledge and belief.  \n[MATHISH KARTHICK K M]\nDATE:\nPLACE:\nTIRUPUR\nCERTIFICATIONS\nCertified “ Java Features ” at Infosys\nSpringboard platform\nCertified “SQL Course” at Infosys\nspringboard Platform \nCertified “Cloud Computing” at Infosys\nspringboard Platform \nCertified “Computer Networking course” at\nInfosys Springboard\nCertified “ JavaScript Course ” at Infosys\nspringboard\nCertified “ DBMS Course ” at Infosys\nspringboard\nWORKSHOP & WEBINARS\nDeveloped and maintained responsive web\napplications using HTML, CSS, and php,\nenhancing user experience and accessibility.\nCollaborated with a team of developers to\nimplement new features and fix bugs, improving\noverall site functionality.\nNandha Info Tech, Cbe |  28.08.2024 - 05.09.2024\nWeb Development Internship\nPROFESSIONAL EXPERIENCE\nAcademia - Student Learning Management\nSystem\nFull-stack Learning Management System enabling\nacademic institutions to manage study materials,\nstudents, and resources with role-based access\ncontrol. Features include regulation-based content\ndistribution, where uploaded materials are\nautomatically filtered and shown only to students of\nthe matching academic regulation.\nTech Stack: React, Node.js,  MongoDB, JWT",
+      "jobDescription": "WEB DEVELOPMENT\r\n",
+      "createdAt": "2026-07-01T06:31:47.480Z"
+    }
+  ],
+  "builders": [
+    {
+      "userId": "te1apoo2nh",
+      "name": "",
+      "title": "",
+      "email": "",
+      "phone": "",
+      "website": "",
+      "summary": "",
+      "experience": [],
+      "education": [],
+      "skills": [
+        "html"
+      ],
+      "projects": [],
+      "selectedTemplate": "classic",
+      "updatedAt": "2026-07-01T07:26:14.720Z"
+    }
+  ]
+}
