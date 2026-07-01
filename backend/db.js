@@ -6,7 +6,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const LOCAL_DB_PATH = path.join(__dirname, 'data', 'local_db.json');
+const isVercel = process.env.VERCEL || process.env.NOW_BUILDER;
+const LOCAL_DB_PATH = isVercel
+  ? path.join('/tmp', 'local_db.json')
+  : path.join(__dirname, 'data', 'local_db.json');
 
 let useMongoDB = false;
 
