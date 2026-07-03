@@ -57,7 +57,10 @@ export async function analyzeResumeFile(req, res) {
     console.log('Saving resume analysis details...');
     const savedAnalysis = await db.saveAnalysis(analysisData);
 
-    res.status(201).json(savedAnalysis);
+    res.status(201).json({
+      ...(savedAnalysis.toObject ? savedAnalysis.toObject() : savedAnalysis),
+      id: savedAnalysis._id ? savedAnalysis._id.toString() : savedAnalysis.id
+    });
   } catch (error) {
     console.error('Resume analysis error:', error);
     res.status(500).json({ error: error.message || 'Server error during resume analysis.' });

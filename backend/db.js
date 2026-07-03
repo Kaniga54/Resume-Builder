@@ -194,6 +194,9 @@ export const db = {
 
   async getAnalysisById(id) {
     if (useMongoDB) {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return null;
+      }
       return await ResumeAnalysisModel.findById(id);
     } else {
       const data = await readLocalDB();
