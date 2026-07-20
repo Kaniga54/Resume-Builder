@@ -164,10 +164,10 @@ export default function Results() {
                     cx="88" 
                     cy="88" 
                     r="76" 
-                    className="stroke-emerald-500 fill-transparent animate-gauge" 
+                    className="stroke-emerald-500 fill-transparent transition-all duration-1000 ease-out" 
                     strokeWidth="10" 
-                    strokeDasharray="477" 
-                    strokeDashoffset={477 - (477 * data.score) / 100}
+                    strokeDasharray="477.5" 
+                    strokeDashoffset={477.5 - (477.5 * Math.min(100, Math.max(0, data.score))) / 100}
                     strokeLinecap="round" 
                   />
                 </svg>

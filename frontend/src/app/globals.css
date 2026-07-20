@@ -95,17 +95,8 @@ body {
   background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(0,0,0,0) 70%);
 }
 
-/* Progress Gauge Keyframes */
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 .animate-gauge {
-  stroke-dasharray: 283;
-  stroke-dashoffset: 283;
-  animation: dash 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Skeleton Loading Shimmer */
