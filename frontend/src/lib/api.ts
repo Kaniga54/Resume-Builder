@@ -20,6 +20,26 @@ function getHeaders(isMultipart = false) {
   return headers;
 }
 
+async function handleResponseError(res: Response, defaultMsg: string): Promise<never> {
+  let errMsg = defaultMsg;
+  try {
+    const data = await res.json();
+    if (data && data.error) errMsg = data.error;
+  } catch {
+    // fallback to default
+  }
+
+  if (res.status === 401 || res.status === 403) {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('vitacv_token');
+      localStorage.removeItem('vitacv_user');
+      window.location.href = '/login';
+    }
+  }
+
+  throw new Error(errMsg);
+}
+
 export interface User {
   id: string;
   name: string;
@@ -170,8 +190,7 @@ export const api = {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to analyze resume.');
+      await handleResponseError(res, 'Failed to analyze resume.');
     }
 
     return await res.json();
@@ -184,8 +203,7 @@ export const api = {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to fetch history.');
+      await handleResponseError(res, 'Failed to fetch history.');
     }
 
     return await res.json();
@@ -198,8 +216,7 @@ export const api = {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to fetch analysis details.');
+      await handleResponseError(res, 'Failed to fetch analysis details.');
     }
 
     return await res.json();
@@ -213,8 +230,7 @@ export const api = {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to load builder details.');
+      await handleResponseError(res, 'Failed to load builder details.');
     }
 
     return await res.json();
@@ -228,8 +244,7 @@ export const api = {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to save builder details.');
+      await handleResponseError(res, 'Failed to save builder details.');
     }
 
     return await res.json();
