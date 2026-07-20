@@ -152,7 +152,7 @@ export default function Results() {
               
               {/* Radial Score Gauge */}
               <div className="relative h-44 w-44 flex items-center justify-center mt-6">
-                <svg className="w-full h-full transform -rotate-90">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 176 176">
                   <circle 
                     cx="88" 
                     cy="88" 
@@ -166,8 +166,10 @@ export default function Results() {
                     r="76" 
                     className="stroke-emerald-500 fill-transparent transition-all duration-1000 ease-out" 
                     strokeWidth="10" 
-                    strokeDasharray="477.5" 
-                    strokeDashoffset={477.5 - (477.5 * Math.min(100, Math.max(0, data.score))) / 100}
+                    style={{
+                      strokeDasharray: 477.52,
+                      strokeDashoffset: 477.52 - (477.52 * Math.min(100, Math.max(0, Number(data.score) || 0))) / 100
+                    }}
                     strokeLinecap="round" 
                   />
                 </svg>
