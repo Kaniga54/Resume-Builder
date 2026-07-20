@@ -110,7 +110,13 @@ export default function Analyze() {
       router.push(`/results/${result.id}`);
     } catch (err: any) {
       console.error(err);
-      setError(err.message || 'An error occurred during resume analysis. Please try again.');
+      const msg = err.message || '';
+      if (msg.includes('token') || msg.includes('denied') || msg.includes('Access') || msg.includes('expired')) {
+        api.logout();
+        router.push('/login');
+        return;
+      }
+      setError(msg || 'An error occurred during resume analysis. Please try again.');
       setLoading(false);
     }
   };

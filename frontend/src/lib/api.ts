@@ -33,7 +33,9 @@ async function handleResponseError(res: Response, defaultMsg: string): Promise<n
     if (typeof window !== 'undefined') {
       localStorage.removeItem('vitacv_token');
       localStorage.removeItem('vitacv_user');
-      window.location.href = '/login';
+      localStorage.removeItem('venum_token');
+      localStorage.removeItem('venum_user');
+      window.location.replace('/login');
     }
   }
 
@@ -159,13 +161,21 @@ export const api = {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('vitacv_token');
       localStorage.removeItem('vitacv_user');
+      localStorage.removeItem('venum_token');
+      localStorage.removeItem('venum_user');
     }
   },
 
   getCurrentUser(): User | null {
     if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('vitacv_token');
       const userStr = localStorage.getItem('vitacv_user');
-      return userStr ? JSON.parse(userStr) : null;
+      if (!token || !userStr) return null;
+      try {
+        return JSON.parse(userStr);
+      } catch {
+        return null;
+      }
     }
     return null;
   },
