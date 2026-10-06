@@ -158,18 +158,21 @@ export const api = {
   // Authentication (Client-Side Local Storage)
   async login(email: string, password: string): Promise<AuthResponse> {
     const cleanEmail = email.trim().toLowerCase();
+    const cleanPass = password.trim();
+
+    if (!cleanEmail || !cleanPass) {
+      throw new Error('Please enter both your email address and password.');
+    }
+
     const users: Array<User & { passwordHash?: string }> = safeGetItem(STORAGE_KEYS.USERS_LIST, []);
-    
-    let user = users.find(u => u.email.toLowerCase() === cleanEmail);
+    const user = users.find(u => u.email.toLowerCase() === cleanEmail);
+
     if (!user) {
-      // Auto-register convenience for seamless testing
-      user = {
-        id: 'usr_' + Math.random().toString(36).substring(2, 10),
-        name: cleanEmail.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-        email: cleanEmail
-      };
-      users.push(user);
-      safeSetItem(STORAGE_KEYS.USERS_LIST, users);
+      throw new Error('No account found with this email. Please click "Create an account" below to register.');
+    }
+
+    if (user.passwordHash && user.passwordHash !== cleanPass) {
+      throw new Error('Incorrect password. Please verify your password and try again.');
     }
 
     const token = 'vitacv_jwt_' + Math.random().toString(36).substring(2, 15) + Date.now();
@@ -183,30 +186,45 @@ export const api = {
 
   async register(name: string, email: string, password: string): Promise<AuthResponse> {
     const cleanEmail = email.trim().toLowerCase();
-    const cleanName = name.trim() || cleanEmail.split('@')[0];
-    const users: Array<User> = safeGetItem(STORAGE_KEYS.USERS_LIST, []);
+    const cleanName = name.trim();
+    const cleanPass = password.trim();
 
-    let existing = users.find(u => u.email.toLowerCase() === cleanEmail);
-    if (existing) {
-      existing.name = cleanName;
-    } else {
-      existing = {
-        id: 'usr_' + Math.random().toString(36).substring(2, 10),
-        name: cleanName,
-        email: cleanEmail
-      };
-      users.push(existing);
+    if (!cleanName || cleanName.length < 2) {
+      throw new Error('Please enter your full name (at least 2 characters).');
     }
 
-    safeSetItem(STORAGE_KEYS.USERS_LIST, users);
-    const token = 'vitacv_jwt_' + Math.random().toString(36).substring(2, 15) + Date.now();
+    if (!cleanEmail || !/^\S+@\S+\.\S+$/.test(cleanEmail)) {
+      throw new Error('Please enter a valid email address.');
+    }
 
+    if (!cleanPass || cleanPass.length < 6) {
+      throw new Error('Password must be at least 6 characters long.');
+    }
+
+    const users: Array<User & { passwordHash?: string }> = safeGetItem(STORAGE_KEYS.USERS_LIST, []);
+    const existing = users.find(u => u.email.toLowerCase() === cleanEmail);
+
+    if (existing) {
+      throw new Error('An account with this email already exists. Please sign in instead.');
+    }
+
+    const newUser = {
+      id: 'usr_' + Math.random().toString(36).substring(2, 10),
+      name: cleanName,
+      email: cleanEmail,
+      passwordHash: cleanPass
+    };
+
+    users.push(newUser);
+    safeSetItem(STORAGE_KEYS.USERS_LIST, users);
+
+    const token = 'vitacv_jwt_' + Math.random().toString(36).substring(2, 15) + Date.now();
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEYS.TOKEN, token);
-      localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(existing));
+      localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify({ id: newUser.id, name: newUser.name, email: newUser.email }));
     }
 
-    return { token, user: existing };
+    return { token, user: { id: newUser.id, name: newUser.name, email: newUser.email } };
   },
 
   logout(): void {
@@ -220,28 +238,19 @@ export const api = {
 
   getCurrentUser(): User | null {
     if (typeof window === 'undefined') return null;
+    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
     const userStr = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
-    if (userStr) {
-      try {
-        return JSON.parse(userStr);
-      } catch {
-        // continue
-      }
+    if (!token || !userStr) return null;
+    try {
+      return JSON.parse(userStr);
+    } catch {
+      return null;
     }
-    // Auto-initialize a default guest session so users can use the app immediately
-    const guestUser: User = {
-      id: 'guest_user',
-      name: 'Guest User',
-      email: 'guest@vitacv.local'
-    };
-    localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(guestUser));
-    localStorage.setItem(STORAGE_KEYS.TOKEN, 'guest_token_' + Date.now());
-    return guestUser;
   },
 
   getToken(): string | null {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem(STORAGE_KEYS.TOKEN) || 'guest_token';
+      return localStorage.getItem(STORAGE_KEYS.TOKEN);
     }
     return null;
   },
